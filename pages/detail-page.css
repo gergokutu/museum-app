@@ -34,7 +34,6 @@ body {
     border-radius: 5px;
     max-width: 50%;
     min-width: 15rem;
-
     background-color: rgb(214, 202, 188);
   }
   
@@ -45,7 +44,6 @@ body {
     padding: 1rem;
     border: 1px solid #CCC;
     border-radius: 5px;
-
     background-color: rgb(214, 202, 188);
   }
   
@@ -77,22 +75,18 @@ body {
   }
   
   button {
-    padding: 0;
     font: inherit;
-    color: inherit;
-    background-color: transparent;
-  
     border: solid 1px transparent;
     border-radius: 5px;
     padding: 0.5rem 1rem;
-    color: #ffffff;
-    background-color: black;
+    color: black;
+    background-color: white;
   }
   
   button:hover, button:focus {
     color: black;
     border-color: black;
-    background-color: white;
+    background-color: rgb(161, 150, 150);
   }
   
   footer {
