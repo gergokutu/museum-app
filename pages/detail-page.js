@@ -52,6 +52,9 @@ function doesNotPassAllValidations(name, msg) {
         return true
     }
 
+    // no bad words
+
+
     // no bad words!!!
     if (msg.indexOf('sucks') !== -1) {
         alert('Watch your wording!')
