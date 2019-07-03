@@ -5,8 +5,9 @@
         <link rel="stylesheet" type="text/css" media="screen" href="detail-page.css">
         <link href="https://fonts.googleapis.com/css?family=Barriecito&display=swap" rel="stylesheet">
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-sacale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="description" content="museum guide app's detail page by following codaisseur guidelines"/>
+        <script src="detail-page.js"></script>
     </head>
 
     <body>
@@ -26,7 +27,7 @@
                 </section>
             </section>
     
-            <form>
+            <form onsubmit="submitComment(); return false">
                 <div class="formSection">
                     <label for="name">Name:</label>
                     <input type="text" id="name">
