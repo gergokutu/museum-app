@@ -327,28 +327,32 @@ const data = {
 const paintings = data.artObjects
 
 function displayPainting(painting) {
-        // gather Data
-        // const painting = paintings[i]
-        const gallery = document.getElementById('gallery')
-        const galleryStyle = 'gallery'
-        const link = './pages/detail-page.html'
-        const blank = '_blank'
-        const pictureStyle = 'artObject'
-        // create elements
-        const img = document.createElement('img')
-        const a = document.createElement('a')
+    // filtering out paintings
+    if (painting.webImage.width < 2000 || painting.principalOrFirstMaker === 'Paul Joseph Constantin Gabriël') {
+        return null
+    }
+    // gather Data
+    // const painting = paintings[i]
+    const gallery = document.getElementById('gallery')
+    const galleryStyle = 'gallery'
+    const link = './pages/detail-page.html'
+    const blank = '_blank'
+    const pictureStyle = 'artObject'
+    // create elements
+    const img = document.createElement('img')
+    const a = document.createElement('a')
+
+    // adjust elements
+    gallery.id = galleryStyle
+    img.alt = painting.title
+    img.src = painting.webImage.url
+    img.className = pictureStyle
+    a.href = link
+    a.target = blank
     
-        // adjust elements
-        gallery.id = galleryStyle
-        img.alt = painting.title
-        img.src = painting.webImage.url
-        img.className = pictureStyle
-        a.href = link
-        a.target = blank
-        
-        // display elements
-        a.appendChild(img)
-        gallery.appendChild(a)
+    // display elements
+    a.appendChild(img)
+    gallery.appendChild(a)
 } 
         
 for (let i = 0; i < paintings.length; i++) {
