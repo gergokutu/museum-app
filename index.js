@@ -354,9 +354,21 @@ function displayPainting(painting) {
     a.appendChild(img)
     gallery.appendChild(a)
 } 
-        
-for (let i = 0; i < paintings.length; i++) {
-    const currentPainting = paintings[i]
-    displayPainting(currentPainting)
-}
 
+function checkPainter() {
+  // iterate all the painters in the array
+  for (let i = 0; i < paintings.length; i++) {
+    // get the name from the input field
+    let painterName = document.getElementById('painter').value
+    // compare input field's name and array's names
+    if (painterName === paintings[i].principalOrFirstMaker) {
+      // if true display pic(S) of the painter
+      const currentPainting = paintings[i]
+      displayPainting(currentPainting)
+      return true
+    }
+    // if not » just print a message on the screen
+    alert(`Sorry, we do not have any painting from ${painterName}`)
+    return null
+  }  
+}
