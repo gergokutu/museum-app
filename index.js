@@ -326,6 +326,7 @@ const data = {
 
 const paintings = data.artObjects
 
+// displayPainting is invoked later...
 function displayPainting(painting) {
     // filtering out paintings
     if (painting.webImage.width < 2000 || painting.principalOrFirstMaker === 'Paul Joseph Constantin Gabriël') {
