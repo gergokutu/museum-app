@@ -333,23 +333,23 @@ function displayPainting(painting) {
         return null
     }
     // gather Data
-    // const painting = paintings[i]
+    // const painting = paintings[i] » this is from an earlier version
     const gallery = document.getElementById('gallery')
-    const galleryStyle = 'gallery'
+    const galleryStyle = 'gallery' // CSS
     const link = './pages/detail-page.html'
-    const blank = '_blank'
-    const pictureStyle = 'artObject'
+    const blank = '_blank' // to open the detail-page on new tab
+    const pictureStyle = 'artObject' // to apply CSS styling
     // create elements
     const img = document.createElement('img')
     const a = document.createElement('a')
 
     // adjust elements
-    gallery.id = galleryStyle
+    gallery.id = galleryStyle // CSS
     img.alt = painting.title
     img.src = painting.webImage.url
-    img.className = pictureStyle
+    img.className = pictureStyle // CSS
     a.href = link
-    a.target = blank
+    a.target = blank // open on new tab
     
     // display elements
     a.appendChild(img)
