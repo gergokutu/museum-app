@@ -395,7 +395,7 @@ function doesNotPassAllValidations(name, msg) {
     }
 
     // no bad words!!!
-    const blacklist = ["suck", "fuck", "asshole", "stupid", "bitch"];
+    const blacklist = ["sucks", "fuck", "asshole", "stupid", "bitch", "shit", "shitty"];
     for (let i = 0; i < blacklist.length; ++i) {
         if (msg.indexOf(blacklist[i]) !== -1) {
             alert('Watch your wording!')
