@@ -1,3 +1,5 @@
+// data rendereing - day4
+// inserting h1, and img elements under section#content
 const data = {
   elapsedMilliseconds: 0,
   count: 359,
@@ -325,54 +327,83 @@ const data = {
 }
 
 const paintings = data.artObjects
+const picTitle = paintings[2].longTitle
 
-// displayPainting is invoked later...
-function displayPainting(painting) {
-    // filtering out paintings
-    if (painting.webImage.width < 2000 || painting.principalOrFirstMaker === 'Paul Joseph Constantin Gabriël') {
-        return null
-    }
-    // gather Data
-    // const painting = paintings[i] » this is from an earlier version
-    const gallery = document.getElementById('gallery')
-    const galleryStyle = 'gallery' // CSS
-    const link = `./pages/detail-page_${painting.id}.html`
-    const blank = '_blank' // to open the detail-page on new tab
-    const pictureStyle = 'artObject' // to apply CSS styling
-    // create elements
-    const img = document.createElement('img')
-    const a = document.createElement('a')
+const section = document.getElementById('content')
 
-    // adjust elements
-    gallery.id = galleryStyle // CSS
-    img.alt = painting.title
-    img.src = painting.webImage.url
-    img.className = pictureStyle // CSS
-    a.href = link
-    a.target = blank // open on new tab
-    
-    // display elements
-    a.appendChild(img)
-    gallery.appendChild(a)
-} 
+const img = document.createElement('img')
+img.src = paintings[2].webImage.url
+img.alt = paintings[2].longTitle
+section.appendChild(img)
 
-function checkPainter() {
-  let foundPainter = false
+const h1 = document.createElement('h1')
+h1.textContent = picTitle
+section.appendChild(h1)
 
-  // iterate all the painters in the array
-  for (let i = 0; i < paintings.length; i++) {
-    // get the name from the input field
-    let painterName = document.getElementById('painter').value
+// data & elements
+function submitComment() {
+  const inputField = document.getElementById('name')
+  const name = inputField.value
+  const textArea = document.getElementById('msg')
+  const msg = textArea.value
 
-    // compare input field's name and array's names
-    if (painterName === paintings[i].principalOrFirstMaker) {
-      // if true display pic(S) of the painter
-      const currentPainting = paintings[i]
-      
-      displayPainting(currentPainting)
-      foundPainter = true
-    } else if (i === paintings.length -1 && !foundPainter) {
-      alert(`Sorry, we do not have any painting from ${painterName}`)
-    }
+  function justFirstLetterUpperCase(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  // form validations
+  if (doesNotPassAllValidations(name, msg)) {
+      return
+    }  
+
+  const comment = document.createElement('section')
+  const h3 = document.createElement('h3')
+  const p = document.createElement('p')
+  h3.innerHTML = `${justFirstLetterUpperCase(name)} said:`
+  p.innerHTML = msg
+  comment.classList.add('comment')
+  comment.appendChild(h3)
+  comment.appendChild(p)
+
+  // display a comment
+  const commentSection = document.getElementById('comments')
+  commentSection.appendChild(comment)
+  inputField.value = null
+  textArea.value = null
 }
+
+// form validations, error check
+function doesNotPassAllValidations(name, msg) {
+  if (!name && !msg) {
+      alert('You forgot to fill in your name and message!')
+      return true;
+  }
+
+  if (!name && msg) {
+      alert('You forgot to fill in your name!')
+      return true; 
+  }
+
+  if (name && !msg) {
+      alert('You forgot to fill in your message!')
+      return true; 
+  }
+
+  if(msg.length > 280) {
+      alert('Your comment is too long')
+      return true
+  }
+
+  // no bad words!!!
+  const blacklist = ["sucks", "fuck", "asshole", "stupid", "bitch", "shit", "shitty"];
+  for (let i = 0; i < blacklist.length; ++i) {
+      if (msg.indexOf(blacklist[i]) !== -1) {
+          alert('Watch your wording!')
+          return true
+      }
+  }
+
+  return false
+}
+
+
